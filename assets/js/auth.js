@@ -65,17 +65,16 @@ document.addEventListener('DOMContentLoaded', () => {
         loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             let isValid = true;
-            const email = loginForm.querySelector('#email');
+            const identifier = loginForm.querySelector('#email');
             const password = loginForm.querySelector('#password');
 
-            if (!email.value) { showError(email, 'Email is required'); isValid = false; }
-            else if (!validateEmail(email.value)) { showError(email, 'Invalid email format'); isValid = false; }
+            if (!identifier.value) { showError(identifier, 'Email or User ID is required'); isValid = false; }
             
             if (!password.value) { showError(password, 'Password is required'); isValid = false; }
 
             if (isValid) {
                 const formData = new FormData();
-                formData.append('email', email.value);
+                formData.append('email', identifier.value);
                 formData.append('password', password.value);
 
                 try {
@@ -101,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const password = signupForm.querySelector('#password');
             const confirm = signupForm.querySelector('#confirmPassword');
 
-            if (!name.value) { showError(name, 'Full name is required'); isValid = false; }
+            if (!name.value) { showError(name, 'User ID is required'); isValid = false; }
             if (!email.value) { showError(email, 'Email is required'); isValid = false; }
             else if (!validateEmail(email.value)) { showError(email, 'Invalid email format'); isValid = false; }
             
@@ -123,7 +122,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         showToast('Registration successful! Redirecting...', 'success');
                         setTimeout(() => window.location.href = 'login.html', 1500);
                     } else {
-                        showError(email, data.message);
+                        if (data.message === 'EMAIL_EXISTS') {
+                            showError(email, 'Email address is already registered');
+                        } else if (data.message === 'USERID_EXISTS') {
+                            showError(name, 'User ID is already taken');
+                        } else {
+                            showError(email, data.message);
+                        }
                     }
                 } catch (err) { showError(email, 'Server error. Please try again.'); }
             }

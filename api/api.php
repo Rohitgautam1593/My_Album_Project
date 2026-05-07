@@ -43,7 +43,14 @@ try {
                 $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
                 $stmt->execute([$email]);
                 if ($stmt->fetch()) {
-                    throw new Exception('Email already in use');
+                    throw new Exception('EMAIL_EXISTS');
+                }
+
+                // Check for duplicate name
+                $stmt = $pdo->prepare("SELECT id FROM users WHERE name = ?");
+                $stmt->execute([$name]);
+                if ($stmt->fetch()) {
+                    throw new Exception('USERID_EXISTS');
                 }
 
                 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
@@ -59,8 +66,8 @@ try {
                 $email = $_POST['email'] ?? '';
                 $password = $_POST['password'] ?? '';
 
-                $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
-                $stmt->execute([$email]);
+                $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ? OR name = ?");
+                $stmt->execute([$email, $email]);
                 $user = $stmt->fetch();
 
                 if ($user && password_verify($password, $user['password'])) {
@@ -76,7 +83,7 @@ try {
                         ]
                     ];
                 } else {
-                    throw new Exception('Invalid email or password');
+                    throw new Exception('Invalid credentials');
                 }
             }
             break;
