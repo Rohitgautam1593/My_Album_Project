@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | My Album</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="auth-card">
+        <div class="brand">
+            <h1>My Album</h1>
+            <p>Welcome back! Please login to your account.</p>
+        </div>
+
+        <form id="loginForm" novalidate>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <div class="input-wrapper">
+                    <input type="email" id="email" placeholder="name@example.com">
+                    <div class="error-message">Email is required</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-wrapper">
+                    <input type="password" id="password" placeholder="••••••••">
+                    <span class="toggle-password">👁️</span>
+                    <div class="error-message">Password is required</div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-primary">Login</button>
+        </form>
+
+        <div class="auth-footer">
+            Don't have an account? <a href="signup.html">Sign Up</a>
+        </div>
+    </div>
+
+    <script src="assets/js/auth.js"></script>
+</body>
+
+</html>

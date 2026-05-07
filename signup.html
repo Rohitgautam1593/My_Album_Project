@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | My Album</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="auth-card">
+        <div class="brand">
+            <h1>My Album</h1>
+            <p>Create your account to start sharing highlights.</p>
+        </div>
+
+        <form id="signupForm" novalidate>
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <div class="input-wrapper">
+                    <input type="text" id="name" placeholder="John Doe">
+                    <div class="error-message">Full name is required</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <div class="input-wrapper">
+                    <input type="email" id="email" placeholder="name@example.com">
+                    <div class="error-message">Email is required</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-wrapper">
+                    <input type="password" id="password" placeholder="••••••••">
+                    <span class="toggle-password">👁️‍G</span>
+                    <div class="error-message">Password is required</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <div class="input-wrapper">
+                    <input type="password" id="confirmPassword" placeholder="••••••••">
+                    <span class="toggle-password">👁️‍G</span>
+                    <div class="error-message">Please confirm your password</div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-primary">Sign Up</button>
+        </form>
+
+        <div class="auth-footer">
+            Already have an account? <a href="login.html">Login</a>
+        </div>
+    </div>
+
+    <script src="assets/js/auth.js"></script>
+</body>
+</html>
